@@ -1,0 +1,11 @@
+<h2>Productions</h2>
+<div class="productionyears">
+<% @productions.group_by(&:year).each do |y,yp| %>
+	<h3><%= y %></h3>
+	<ul>
+	<% yp.each do |p| %>
+		<li><%= link_to p.name, :controller => :productions, :action => :show, :folder => p.folder %></li>
+	<% end %>
+	</ul>
+<% end %>
+</div>

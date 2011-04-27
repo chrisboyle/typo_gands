@@ -1,0 +1,17 @@
+<% content_for :title do @production.name end %>
+<%= div_for @production do %>
+	<h2><%= @production.name %></h2>
+	<% if @production.notes %>
+		<div class="prod_notes"><%= simple_format(@production.notes) %></div>
+	<% end %>
+	<div class="prod_dates"><%= @production.term %> <%= @production.year %>
+		<%= d = dates_condensed(@production); d ? " (#{d})" : "" %></div>
+	<div class="prod_venue"><%= @production.venue %></div>
+
+	<% if @production.cast.any? || @production.team.any? %>
+		<%= credits_table(@production.cast) %>
+		<%= credits_table(@production.team) %>
+	<% else %>
+		<div class="credits nocredits">No credits on file</div>
+	<% end %>
+<% end %>

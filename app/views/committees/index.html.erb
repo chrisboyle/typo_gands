@@ -1,0 +1,11 @@
+<h2>Committees</h2>
+<div class="committees">
+<table>
+	<% @committees.group_by(&:year).each do |y,ym| %>
+		<tr><th colspan="3" class="year"><%=y%>&ndash;<%=y+1%></th></tr>
+		<% ym.each do |m| %>
+			<tr><th scope="row"><%=m.position%></th><td><%=m.name%></td><td><%=m.college%></td></tr>
+		<% end %>
+	<% end %>
+</table>
+</div>
