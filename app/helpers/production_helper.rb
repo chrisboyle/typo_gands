@@ -22,7 +22,7 @@ module ProductionHelper
 						content_tag :td, p.name
 					end
 				end.join)
-			end.join
+			end.join.html_safe
 		end
 	end
 end
