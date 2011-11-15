@@ -4,6 +4,6 @@ class Production < ActiveRecord::Base
 	default_scope order('year DESC, startdate DESC')
 
 	def dates
-		startdate && enddate ? (startdate .. enddate) : nil
+		(startdate && enddate) ? (startdate .. enddate) : nil
 	end
 end

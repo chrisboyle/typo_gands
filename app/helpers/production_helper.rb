@@ -1,9 +1,15 @@
 module ProductionHelper
 	def dates_condensed(production)
-		d0, d1 = *production.dates
-		if not d0 or not d1 then return nil end
-		if (production.year == d0.year) and (d0.year == d1.year) and (d0.month == d1.month)
-			"#{d0.day.ordinalize}-#{d1.to_date.to_s(:dm_long)}"
+		d0, d1 = production.startdate, production.enddate
+		if not d0 then return nil end
+		if not d1 or d0 == d1
+			"#{d0.to_date.to_s(:dm_long)}"
+		elsif (production.year == d0.year) and (d0.year == d1.year)
+			if d0.month == d1.month
+				"#{d0.day.ordinalize}-#{d1.to_date.to_s(:dm_long)}"
+			else
+				"#{d0.to_date.to_s(:dm_long)}-#{d1.to_date.to_s(:dm_long)}"
+			end
 		else
 			"#{d0.to_date.to_s(:dmy_long)} to #{d1.to_date.to_s(:dmy_long)}"
 		end
